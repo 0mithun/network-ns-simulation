@@ -1,11 +1,11 @@
 
 
 ## A network namespace in Linux is a feature that allows you to create isolated network environments within a single operating system. Each network namespace has its own interfaces, routing tables, forwarding rules, etc. A physical network device can live in exactly one network namespace. In this project I'll communicate between two isolate network namespace using bridge.
-
+&nbsp;
 
 
 ![Imge 1](./images/diagram.png)
-
+&nbsp;
 
 
 ###  Check basic network status on host machine/root namespace. 
@@ -13,7 +13,7 @@
 sudo ip link
 ```
 ![Imge 1](./images/01.png)
-
+&nbsp;
 
 ### Create two network namespace
 ``` bash
@@ -21,7 +21,7 @@ sudo ip netns add ns1
 sudo ip netns add ns2
 ```
 ![Imge 1](./images/02.png)
-
+&nbsp;
 
 ### Create a bridge network on the host
 ``` bash
@@ -34,7 +34,7 @@ sudo ip link add br0 type bridge
 sudo ip addr add 192.168.1.1/24 dev br0
 ```
 ![Imge 1](./images/03.png)
-
+&nbsp;
 
 ### Configure IP to the bridge network
 ``` bash
@@ -59,7 +59,7 @@ sudo ip netns exec ns1 ip link set ceth0 up
 sudo ip link
 ```
 ![Imge 1](./images/04.png)
-
+&nbsp;
 
 #### For ns2 do the same as ns1
 ``` bash
@@ -72,7 +72,7 @@ sudo ip netns exec ns2 ip link set ceth1 up
 sudo ip link 
 ```
 ![Imge 1](./images/05.png)
-
+&nbsp;
 
 
 ### Add IP address for ns1
@@ -103,6 +103,7 @@ ping -c 2 192.168.1.10
 exit
 ```
 ![Imge 1](./images/06.png)
+&nbsp;
 
 
 ### Connectivity between two network namespaces via bridge is completed.
